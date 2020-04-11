@@ -37,15 +37,16 @@ void layout() {
   if (dht.read(DHT11, 2)) {
     lcd.setCursor(0, 0);
 
-    lcd.print("Celsius => ");
+    lcd.print("Celsius : ");
     float celcius = dht.celsius / 10.0;
     lcd.println(String(celcius, 2).c_str());
-    lcd.print("F.heit  => ");
+    lcd.print("F.heit  : ");
     float fahrenheit = (celcius * 9 / 5) + 32;
     lcd.println(String(fahrenheit, 2).c_str());
-    lcd.print("Humdity => ");
+    lcd.print("Humdity : ");
     float humidity = dht.humidity / 10.0;
-    lcd.print(String(humidity, 1).c_str());   
+    lcd.print(String(humidity, 1).c_str()); 
+    lcd.print(" %");   
     delay(5000);
   }
 }
