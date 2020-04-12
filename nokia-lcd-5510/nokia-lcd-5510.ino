@@ -30,23 +30,28 @@ void setup() {
 void loop() {
   layout();
   //delay(5000);
-  //lcd.clear();
+  lcd.clear();
 }
 int i = 0;
-void layout() {
+void layout() {  
   if (dht.read(DHT11, 2)) {
     lcd.setCursor(0, 0);
 
-    lcd.print("Celsius : ");
+    lcd.print("Temp : ");
     float celcius = dht.celsius / 10.0;
-    lcd.println(String(celcius, 2).c_str());
-    lcd.print("F.heit  : ");
+    lcd.print(String(celcius, 2).c_str());
+    const unsigned char bitmap[5] = {0x00, 0x07, 0x05, 0x07, 0x00} ;
+    lcd.print(" ");
+    lcd.draw(bitmap, 5, false);
+    lcd.print("C");
+    lcd.println("");
+    //lcd.print("F.heit  : ");
     float fahrenheit = (celcius * 9 / 5) + 32;
-    lcd.println(String(fahrenheit, 2).c_str());
-    lcd.print("Humdity : ");
+    //lcd.println(String(fahrenheit, 2).c_str());
+    lcd.print("RH   : ");
     float humidity = dht.humidity / 10.0;
-    lcd.print(String(humidity, 1).c_str()); 
-    lcd.print(" %");   
+    lcd.print(String(humidity, 2).c_str()); 
+    lcd.print("  %");   
     delay(5000);
   }
 }
